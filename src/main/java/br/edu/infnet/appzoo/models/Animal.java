@@ -1,14 +1,20 @@
 package br.edu.infnet.appzoo.models;
 
+import java.util.UUID;
+
 public abstract class Animal {
+  private UUID id;
   private String name;
   private String species;
   private Integer age;
+  private ZooKeeper zooKeeper;
 
   public Animal(String name, String species, Integer age) {
+    this.id = UUID.randomUUID();
     this.name = name;
     this.species = species;
     this.age = age;
+    this.zooKeeper = null;
   }
 
   public String getName() {
@@ -33,6 +39,18 @@ public abstract class Animal {
 
   public void setAge(Integer age) {
     this.age = age;
+  }
+
+  public UUID getId() {
+    return id;
+  }
+
+  public ZooKeeper getZooKeeper() {
+    return zooKeeper;
+  }
+
+  public void setZooKeeper(ZooKeeper zooKeeper) {
+    this.zooKeeper = zooKeeper;
   }
 
   @Override
