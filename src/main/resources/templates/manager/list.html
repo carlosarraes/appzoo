@@ -45,7 +45,7 @@
         </form>
       </section>
       <div
-        th:replace="~{components/table :: genericTable(${managers}, ${headers}, ${fields})}"
+        th:replace="~{components/table :: genericTable(${managers}, ${headers}, ${fields}, ${route})}"
       ></div>
     </main>
   </body>

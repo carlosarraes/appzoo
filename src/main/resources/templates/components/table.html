@@ -1,5 +1,5 @@
 <table
-  th:fragment="genericTable(items, headers, fields)"
+  th:fragment="genericTable(items, headers, fields, route)"
   class="min-w-full text-center mt-8"
 >
   <thead class="bg-gray-200 border-b">
@@ -20,10 +20,9 @@
         th:each="field : ${fields}"
         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
       >
-        <span th:if="${field != 'id'}" th:text="${item[field]}"></span>
-        <div th:if="${field == 'id'}">
+        <div th:if="${#strings.contains(field, 'delete:')}">
           <form
-            th:action="@{/managers/delete/{id}(id=${item[field]})}"
+            th:action="@{'/' + ${route} + '/delete/' + ${item[#strings.substringAfter(field, 'delete:')]}}"
             th:method="delete"
           >
             <button type="submit" class="text-red-500 hover:underline">
@@ -31,6 +30,10 @@
             </button>
           </form>
         </div>
+        <span
+          th:unless="${#strings.contains(field, 'delete:')}"
+          th:text="${item[field]}"
+        ></span>
       </td>
     </tr>
   </tbody>

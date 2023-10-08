@@ -23,7 +23,8 @@ public class ManagerController {
   public String telaLista(Model model) {
     model.addAttribute("managers", managerService.getAllManagers());
     model.addAttribute("headers", Arrays.asList("Name", "Email", "Birth Date", "Actions"));
-    model.addAttribute("fields", Arrays.asList("name", "email", "birthDate", "id"));
+    model.addAttribute("fields", Arrays.asList("name", "email", "birthDate", "delete:id"));
+    model.addAttribute("route", "managers");
 
     return "manager/list";
   }
