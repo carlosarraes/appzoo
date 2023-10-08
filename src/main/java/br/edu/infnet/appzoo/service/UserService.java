@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 public class UserService {
   private final Map<String, User> users = new HashMap<>();
 
-  public void create(String name, String email, String password) {
+  public User create(String name, String email, String password) {
     User user = new User(name, email, password);
     users.put(user.getEmail(), user);
-    System.out.println("User created");
-    System.out.println(users);
+
+    return user;
   }
 
   public User getByEmail(String email) {
@@ -26,8 +26,6 @@ public class UserService {
 
   public void deleteByEmail(String email) {
     users.remove(email);
-    System.out.println("User deleted");
-    System.out.println(users);
   }
 
   public void update(String email, String password) {

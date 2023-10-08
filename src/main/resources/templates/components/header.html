@@ -4,10 +4,13 @@
 >
   <div class="flex justify-between max-w-4xl mx-auto">
     <h1 class="text-4xl">
-      <a th:href="@{/}"> App Zoo </a>
+      <a th:href="@{/}">Zoo</a>
     </h1>
     <nav class="self-center">
-      <ul class="flex">
+      <ul th:if="${user != null}" class="flex">
+        <li class="mr-4 hover:underline">
+          <a th:href="@{/users/list}">Usuários</a>
+        </li>
         <li class="mr-4 hover:underline">
           <a th:href="@{/managers/list}">Gerentes</a>
         </li>
@@ -29,10 +32,23 @@
       </ul>
     </nav>
     <section class="self-center">
-      <a th:href="@{/signin}">
+      <a th:if="${user == null}" th:href="@{/signup}">
+        <i class="ri-user-add-fill text-2xl cursor-pointer"></i>
+      </a>
+      <a th:if="${user == null}" th:href="@{/signin}">
         <i class="ri-login-box-fill text-2xl cursor-pointer"></i>
       </a>
-      <i class="ri-logout-box-fill text-2xl cursor-pointer"></i>
+      <span th:if="${user != null}" class="mr-4" th:text="${user.name}"></span>
+      <form
+        th:if="${user != null}"
+        th:action="@{/signout}"
+        th:method="post"
+        class="inline"
+      >
+        <button id="signout" type="submit">
+          <i class="ri-logout-box-fill text-2xl cursor-pointer"></i>
+        </button>
+      </form>
     </section>
   </div>
 </header>
