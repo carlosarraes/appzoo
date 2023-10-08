@@ -1,0 +1,35 @@
+<header
+  class="w-full bg-slate-700 p-4 text-white shadow-md"
+  th:fragment="header"
+>
+  <div class="flex justify-between max-w-4xl mx-auto">
+    <h1 class="text-4xl">
+      <a th:href="@{/}"> App Zoo </a>
+    </h1>
+    <nav class="self-center">
+      <ul class="flex">
+        <li class="mr-4 hover:underline">
+          <a th:href="@{/managers/list}">Gerentes</a>
+        </li>
+        <li class="mr-4 hover:underline">
+          <a th:href="@{/zookeepers/list}">Cuidadores</a>
+        </li>
+        <li class="mr-4 hover:underline">
+          <a th:href="@{/animals/list}">Animais</a>
+        </li>
+        <li class="mr-4 hover:underline">
+          <a th:href="@{/mammals/list}">Mamiferos</a>
+        </li>
+        <li class="mr-4 hover:underline">
+          <a th:href="@{/birds/list}">Aves</a>
+        </li>
+        <li class="mr-4 hover:underline">
+          <a th:href="@{/reptiles/list}">Repteis</a>
+        </li>
+      </ul>
+    </nav>
+    <section class="self-center">
+      <i class="ri-login-box-fill text-2xl"></i>
+    </section>
+  </div>
+</header>
