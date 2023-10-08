@@ -23,8 +23,7 @@ public class ManagerLoader implements ApplicationRunner {
       String[] fields = reader.readLine().split(";");
       Manager manager = new Manager(fields[0], fields[1], LocalDate.parse(fields[2]));
 
-      System.out.println(manager);
-      managerService.addManager(manager);
+      managerService.create(manager);
     }
 
     reader.close();

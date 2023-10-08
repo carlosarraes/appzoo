@@ -17,10 +17,21 @@
       class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
     >
       <td
-        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
         th:each="field : ${fields}"
-        th:text="${item[field]}"
-      ></td>
+        class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+      >
+        <span th:if="${field != 'id'}" th:text="${item[field]}"></span>
+        <div th:if="${field == 'id'}">
+          <form
+            th:action="@{/managers/delete/{id}(id=${item[field]})}"
+            th:method="delete"
+          >
+            <button type="submit" class="text-red-500 hover:underline">
+              Delete
+            </button>
+          </form>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

@@ -14,8 +14,20 @@ import org.springframework.stereotype.Service;
 public class ManagerService {
   private final Map<UUID, Manager> managers = new HashMap<>();
 
-  public void addManager(Manager manager) {
+  public void create(Manager manager) {
     managers.put(manager.getId(), manager);
+  }
+
+  public Manager getById(UUID id) {
+    return managers.get(id);
+  }
+
+  public void update(Manager manager) {
+    managers.put(manager.getId(), manager);
+  }
+
+  public void delete(UUID id) {
+    managers.remove(id);
   }
 
   public Collection<Manager> getAllManagers() {
