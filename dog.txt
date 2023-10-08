@@ -1,0 +1,3 @@
+Rex;Cachorro;3;Marrom;true;4
+Toby;Cachorro;2;Preto;true;4
+Caramelo;Cachorro;1;Marrom;true;4
