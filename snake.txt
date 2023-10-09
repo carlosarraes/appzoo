@@ -1,0 +1,3 @@
+Sly;reptil;5;Verde;true;true
+Spike;reptil;4;Vermelha;false;true
+Liz;reptil;2;Amarela;false;true

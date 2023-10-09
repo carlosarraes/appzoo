@@ -1,0 +1,3 @@
+Bluey;ave;3;Verde;true;Pequeno
+Feather;ave;5;Marrom;true;Afiado
+Tweet;ave;1;Cinza;true;Pequeno
