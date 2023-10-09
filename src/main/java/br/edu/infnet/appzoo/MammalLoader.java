@@ -1,21 +1,20 @@
 package br.edu.infnet.appzoo;
 
 import br.edu.infnet.appzoo.models.Mammal;
+import br.edu.infnet.appzoo.service.AnimalService;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MammalLoader implements ApplicationRunner {
+  @Autowired private AnimalService animalService;
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
-    Map<UUID, Mammal> mammals = new HashMap<>();
     FileReader file = new FileReader("dog.txt");
     BufferedReader reader = new BufferedReader(file);
 
@@ -30,7 +29,7 @@ public class MammalLoader implements ApplicationRunner {
               Boolean.parseBoolean(fields[4]),
               Integer.parseInt(fields[5]));
 
-      mammals.put(mammal.getId(), mammal);
+      animalService.create(mammal);
     }
     reader.close();
   }
