@@ -1,16 +1,34 @@
 package br.edu.infnet.appzoo.models;
 
-import java.util.UUID;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "animal_type")
 public abstract class Animal {
-  private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+
   private String name;
   private String species;
   private Integer age;
+
+  @ManyToOne
+  @JoinColumn(name = "zookeeper_id")
   private ZooKeeper zooKeeper;
 
+  protected Animal() {}
+
   public Animal(String name, String species, Integer age) {
-    this.id = UUID.randomUUID();
     this.name = name;
     this.species = species;
     this.age = age;
@@ -41,7 +59,7 @@ public abstract class Animal {
     this.age = age;
   }
 
-  public UUID getId() {
+  public Integer getId() {
     return id;
   }
 

@@ -1,25 +1,38 @@
 package br.edu.infnet.appzoo.models;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
+@Entity
 public class Manager {
-  private UUID id;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+
   private String name;
   private String email;
   private LocalDate birthDate;
-  private List<ZooKeeper> zooKeepers;
+
+  @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<ZooKeeper> zooKeepers = new ArrayList<>();
+
+  protected Manager() {}
 
   public Manager(String name, String email, LocalDate birthDate) {
     this.name = name;
     this.email = email;
     this.birthDate = birthDate;
     this.zooKeepers = new ArrayList<>();
-    this.id = UUID.randomUUID();
   }
 
   public String getName() {
@@ -60,7 +73,7 @@ public class Manager {
     zooKeeper.setManager(null);
   }
 
-  public UUID getId() {
+  public Integer getId() {
     return id;
   }
 

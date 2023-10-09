@@ -1,9 +1,16 @@
 package br.edu.infnet.appzoo.models;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("MAMMAL")
 public class Mammal extends Animal {
   private String furColor;
   private Boolean petFriendly;
   private Integer numberOfLegs;
+
+  protected Mammal() {}
 
   public Mammal(
       String name,
