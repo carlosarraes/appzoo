@@ -28,7 +28,7 @@ public class UserController {
 
     model.addAttribute("users", userService.getAllUsers());
     model.addAttribute("headers", Arrays.asList("Nome", "E-mail", "Ação"));
-    model.addAttribute("fields", Arrays.asList("name", "email", "delete:email"));
+    model.addAttribute("fields", Arrays.asList("name", "email", "delete:id"));
     model.addAttribute("route", "users");
 
     return "user/list";
@@ -54,20 +54,16 @@ public class UserController {
   }
 
   @PostMapping(value = "/signup")
-  public String signup(
-      @RequestParam String name,
-      @RequestParam String email,
-      @RequestParam String password,
-      HttpSession session) {
-    User user = userService.create(name, email, password);
+  public String signup(User user, HttpSession session) {
+    userService.create(user);
     session.setAttribute("user", user);
 
     return "redirect:/";
   }
 
-  @DeleteMapping("/users/delete/{email}")
-  public String deleteUser(@PathVariable String email) {
-    userService.deleteByEmail(email);
+  @DeleteMapping("/users/delete/{id}")
+  public String deleteUser(@PathVariable Integer id) {
+    userService.deleteById(id);
     return "redirect:/users/list";
   }
 }
